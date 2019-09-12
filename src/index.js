@@ -14,10 +14,11 @@ const resolvers = {
   Query: {
     info: () => `This is the API of a Hackernews Clone`,
     feed: () => links,
+    link: (root, args) => links.find(link => link.id === args.id),
   },
   //
   Mutation: {
-    post: (parent, args) => {
+    post: (root, args) => {
       const link = {
         id: `link-${idCount++}`,
         description: args.description,
@@ -25,13 +26,22 @@ const resolvers = {
       }
       links.push(link)
       return link
-    }
-  },
-  // 
-  Link: {
-    id: (parent) => parent.id,
-    description: (parent) => parent.description,
-    url: (parent) => parent.url,
+    },
+    updateLink: (root, args) => {
+      const index = links.findIndex(link => link.id === args.id);
+      links[index].description = args.description!== undefined ? args.description : links[index].description;
+      links[index].url = args.url !== undefined ? args.url : links[index].url;
+      return links[index];
+    },
+    deleteLink: (root, args) => {
+      for (var i=0; i < links.length-1; i++) {
+        if (links[i].id===args.id) {
+          const removedLink = links[i];
+          links.splice(i,1);
+          return removedLink;
+        }
+      }
+    }, 
   }
 }
 // 3

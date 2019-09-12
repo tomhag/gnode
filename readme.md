@@ -1,26 +1,54 @@
+# update a link
 mutation {
-  post(
-    url: "www.prisma.io"
-    description: "Prisma replaces traditional ORMs"
+  updateLink(
+    id: "link-3"
+    url: "news"
+    description: "hello"
+  ) {
+    id
+    url
+  	description
+  }
+}
+
+# delete a link
+mutation {
+  deleteLink(id: "link-4"){
+    id
+    url
+    description
+  }
+}
+
+# show a specific link
+query{
+  link(id: "link-3"){
+    id
+    url
+    description
+  }
+}
+
+# show full feed
+query{
+  feed{
+    id
+    description
+    url
+  }
+}
+
+# add a post
+mutation {
+  post (
+    url: "http://www.m23242ail.com2"
+    description: "someth12312321in3232424g"
   ) {
     id
   }
 }
 
-# With every mutation you send, the idCount will increase and the following IDs for created links will be link-2, link-3, and so forth…
-
-## TEST: Implement CRUD for the Link Type
-type Query {
-  # Fetch a single link by its `id`
-  link(id: ID!): Link
+# info
+query {
+  info
 }
-
-type Mutation {
-  # Update a link
-  updateLink(id: ID!, url: String, description: String): Link
-
-  # Delete a link
-  deleteLink(id: ID!): Link
-}
-
-# IS THIS THE LATEST?
