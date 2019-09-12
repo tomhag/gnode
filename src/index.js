@@ -9,33 +9,25 @@ let links = [{
 // 
 let idCount = links.length
 
-//2 We have now moved the typeDef constant to an external file (schema.graphql)
-//A link to this file is added to the typeDefs property in the server constant below...
-
-//3 For each root field in any of the schema's root Types (Query, Mutation) we make resolver functions
-// These fetches the data requeste from API queries, formated after the typeDefinitions in the
-// schema.graphql file
-
-// Every resolver function actually receives 4 arguments. The first one is parent.
-// Nested queries, each level of nesting is a execution level
-/*  
-Query {
-  feed {
-    id
-    url
-  }
-}
-*/
-
-// Resolving the aboce query, first the  "feed" query invokes the "feed" resolver which in
-// turn invokes all the resolvers of the "Link" type (id, description and url resolvers)
-
+//
 const resolvers = {
   Query: {
     info: () => `This is the API of a Hackernews Clone`,
     feed: () => links,
   },
-  // 3
+  //
+  Mutation: {
+    post: (parent, args) => {
+      const link = {
+        id: `link-${idCount++}`,
+        description: args.description,
+        url: args.url,
+      }
+      links.push(link)
+      return link
+    }
+  },
+  // 
   Link: {
     id: (parent) => parent.id,
     description: (parent) => parent.description,
