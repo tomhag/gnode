@@ -1,12 +1,20 @@
 const { GraphQLServer } = require('graphql-yoga')
+
+//1 Add a new list of dummy data
 let links = [{
   id: 'link-0',
   url: 'www.howtographql.com',
   description: 'Fullstack tutorial for GraphQL'
 }]
-// 1
+// 
 let idCount = links.length
 
+//2 We have now moved the typeDef constant to an external file (schema.graphql)
+//A link to this file is added to the typeDefs property in the server constant below...
+
+//3 For each root field in any of the root Types (Query, Mutation) we make resolver functions
+// These fetches the data requeste from API queries, formated after the typeDefinitions in the
+// schema.graphql file
 
 const resolvers = {
   Query: {
@@ -28,7 +36,7 @@ const resolvers = {
 }
 // 3
 const server = new GraphQLServer({
-  typeDefs: './schema.graphql',
+  typeDefs: './src/schema.graphql',
   resolvers,
 })
 server.start(() => console.log(`Server is running on http://localhost:4000`))
