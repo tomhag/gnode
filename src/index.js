@@ -16,6 +16,20 @@ let idCount = links.length
 // These fetches the data requeste from API queries, formated after the typeDefinitions in the
 // schema.graphql file
 
+// Every resolver function actually receives 4 arguments. The first one is parent.
+// Nested queries, each level of nesting is a execution level
+/*  
+Query {
+  feed {
+    id
+    url
+  }
+}
+*/
+
+// Resolving the aboce query, first the  "feed" query invokes the "feed" resolver which in
+// turn invokes all the resolvers of the "Link" type (id, description and url resolvers)
+
 const resolvers = {
   Query: {
     info: () => `This is the API of a Hackernews Clone`,
