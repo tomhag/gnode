@@ -1,6 +1,5 @@
 type Link {
   id: ID! @id
-  createdAt: DateTime! @createdAt
   description: String!
   url: String!
   postedBy: User
@@ -11,5 +10,5 @@ type User {
   name: String!
   email: String! @unique
   password: String!
-  links: [Link!]!  
+  links: [Link!]!
 }
