@@ -109,7 +109,7 @@ query {
   }
 }
 
-## Update
+### Update
 mutation {
   updateLink(
     id: "link-3"
@@ -122,7 +122,7 @@ mutation {
   }
 }
 
-## Delete
+### Delete
 mutation {
   deleteLink(id: "link-4"){
     id
@@ -131,7 +131,7 @@ mutation {
   }
 }
 
-## Link
+### Link
 query{
   link(id: "link-3"){
     id
