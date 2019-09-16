@@ -1,3 +1,6 @@
+### Package Manager
+yarn
+
 ### Post
 mutation {
   post(
