@@ -1,5 +1,11 @@
+# NOTES
 ### Package Manager
 yarn
+# SIMPLE QUERIES AND MUTATIONS
+### Create User
+type Mutation {
+  createUser(name: String!): User!
+}
 
 ### Post
 mutation {
@@ -66,16 +72,19 @@ subscription {
 }
 BACK: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjazBqd3FvY3owMDRhMDgzMGJudDF2M3l0IiwiaWF0IjoxNTY4NDg3MTMxfQ.ROq6MPDLJ-EBq28lehEJdCfjEmHpjzqtX2x7ndGRIwQ
 
+# Filtering, Pagination & Sorting Queries
 ### Filter
 query {
-  feed(filter:"ali") {
-    id
-  	description
-    url
-    postedBy {
-      id
-      name
-    }
+  feed(filter:"QL") {
+    links {
+    	id
+  		description
+    	url
+    	postedBy {
+    	  id
+      	name
+    	}
+  	}
   }
 }
 
@@ -85,20 +94,25 @@ query {
     first: 5
     skip: 1
   ) {
-    id
-    description
-    url
+    links {
+    	id
+    	description
+    	url
+    }
   }
 }
 
 ### Sorting
 query {
   feed(orderBy: createdAt_ASC) {
-    id
-    description
-    url
+    links {
+    	id
+    	description
+    	url
+    }
   }
 }
+
 
 ### Total
 query {
@@ -111,7 +125,7 @@ query {
     }
   }
 }
-
+##
 ## Update
 mutation {
   updateLink(
