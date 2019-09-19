@@ -70,7 +70,6 @@ subscription {
     }
   }
 }
-BACK: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjazBqd3FvY3owMDRhMDgzMGJudDF2M3l0IiwiaWF0IjoxNTY4NDg3MTMxfQ.ROq6MPDLJ-EBq28lehEJdCfjEmHpjzqtX2x7ndGRIwQ
 
 # Filtering, Pagination & Sorting Queries
 ### Filter
